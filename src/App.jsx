@@ -15,7 +15,7 @@ export const App = () => {
 
   // 追加処理
   const onClickAdd = () => {
-    if(todoText === "") return;
+    if (todoText === "") return;
     const newTodos = [...inCompleteTodos, todoText];
     setIncompleteTodos(newTodos);
     setTodoText("");
@@ -40,7 +40,7 @@ export const App = () => {
 
   // 戻す処理
   const onClickRemove = (index) => {
-    const newCompleteTodos = [ ...completeTodos];//現在の完了リストを取得
+    const newCompleteTodos = [...completeTodos];//現在の完了リストを取得
     newCompleteTodos.splice(index, 1);//完了リストから押下したTODOの削除
 
     const newInCompleteTodos = [...inCompleteTodos, completeTodos[index]];//未完了リストの配列に押下したindex番号のTODOを追加
@@ -56,7 +56,14 @@ export const App = () => {
         todoText={todoText}
         onChange={onChangeTodoText}
         onClick={onClickAdd}
+        disabled={inCompleteTodos.length >= 5}
       />
+      {inCompleteTodos.length >= 5 && ( 
+        <p style={{ color: 'red' }}>
+          登録できるtodoは5個までだよ〜。消化しろ〜。
+        </p>
+      )}
+
 
       {/* 未完了エリア */}
       <IncompleteTodos
@@ -64,7 +71,7 @@ export const App = () => {
         onClickComplete={onClickComplete}
         onClickDelete={onClickDelete}
       />
-      
+
       {/* 完了エリア */}
       <CompleteTodos
         todos={completeTodos}
