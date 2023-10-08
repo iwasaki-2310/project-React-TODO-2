@@ -9,9 +9,7 @@
   border-radius: 10px;
 }
 
-.input-area {
-  background: rgb(188, 222, 240);
-}
+/* .input-areaはCSS-in-JSにしたため、削除 */
 
 .incomplete-area {
  background: rgb(142, 142, 226); 
